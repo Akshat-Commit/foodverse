@@ -44,61 +44,9 @@ with st.sidebar:
     )
     st.markdown("---")
 
-    st.markdown("#### ⚙️ Multimodal AI Engine")
-    provider_choice = st.selectbox(
-        "Inference Provider:",
-        [
-            "⚡ Standalone Demo Mode (Zero Key Needed)",
-            "Google Gemini 1.5 / 2.0 (Multimodal Vision)",
-            "Groq Cloud (LLaMA 3.2 Vision / LLaMA 3.3)"
-        ],
-        index=0,
-        help="Standalone Demonstration Mode includes pre-calibrated food science payloads for instant evaluation."
-    )
-
     gemini_key = ""
     groq_key = ""
     provider_key = "demo"
-
-    if "Gemini" in provider_choice:
-        provider_key = "gemini"
-        env_gemini = os.getenv("GEMINI_API_KEY", "")
-        gemini_key = st.text_input(
-            "Gemini API Key:",
-            value=env_gemini,
-            type="password",
-            placeholder="AIzaSy...",
-            help="Get your key at aistudio.google.com"
-        )
-        if gemini_key:
-            st.success("🟢 Gemini API Key Active")
-        else:
-            st.info("ℹ️ Enter key or fall back to Demo Mode.")
-
-    elif "Groq" in provider_choice:
-        provider_key = "groq"
-        env_groq = os.getenv("GROQ_API_KEY", "")
-        groq_key = st.text_input(
-            "Groq API Key:",
-            value=env_groq,
-            type="password",
-            placeholder="gsk_...",
-            help="Get your key at console.groq.com"
-        )
-        if groq_key:
-            st.success("🟢 Groq API Key Active")
-        else:
-            st.info("ℹ️ Enter key or fall back to Demo Mode.")
-    else:
-        provider_key = "demo"
-        st.markdown(
-            """
-            <div style="background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); border-radius:10px; padding:10px; font-size:0.82rem; color:#A7F3D0;">
-                <b>🚀 Plug & Play Ready:</b> Pre-loaded with high-fidelity culinary datasets and visual diagnostics. Zero external API keys needed!
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
 
     st.markdown("---")
     st.markdown("#### 🧭 Core Intelligence Pillars")
